@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Navbar from "./components/Navbar";
 
 const GREEN = "#41a140";
 const DARK = "#1d1d1f";
@@ -38,62 +39,7 @@ export default function Home() {
         </div>
 
         {/* ── Navbar ───────────────────────────────────────────────── */}
-        <nav
-          className="fixed top-0 left-0 right-0 flex items-center justify-between"
-          style={{ zIndex: 10, padding: "28px 40px" }}
-        >
-          {/* Logo */}
-          <Image
-            src="/images/logo.png"
-            alt="Cereazúcar"
-            width={80}
-            height={70}
-            className="object-contain"
-          />
-
-          {/* Nav links — centered, liquid glass (solid white base + gradient stroke) */}
-          <div
-            className="absolute left-1/2 flex items-center gap-6"
-            style={{ transform: "translateX(-50%)" }}
-          >
-            {NAV_LINKS.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="flex items-center justify-center rounded-full font-normal"
-                style={{
-                  background: "rgba(255,255,255,0.48)",
-                  backdropFilter: "blur(4px)",
-                  WebkitBackdropFilter: "blur(4px)",
-                  border: "1px solid rgba(80,80,80,0.18)",
-                  color: DARK,
-                  fontSize: 16,
-                  padding: "10px 30px",
-                  lineHeight: 1,
-                }}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-
-          {/* Contacto CTA — right */}
-          <a
-            href="#contacto"
-            className="flex items-center justify-center rounded-full font-normal"
-            style={{
-              background: "rgba(65,161,64,0.92)",
-              backdropFilter: "blur(20px) saturate(180%)",
-              WebkitBackdropFilter: "blur(20px) saturate(180%)",
-              color: "white",
-              fontSize: 16,
-              padding: "10px 30px",
-              lineHeight: 1,
-            }}
-          >
-            Contacto
-          </a>
-        </nav>
+        <Navbar />
 
         {/* ── Hero content (lower-left) ─────────────────────────────── */}
         <div
@@ -104,10 +50,12 @@ export default function Home() {
             className="mb-6"
             style={{
               fontSize: "clamp(26px, 2.8vw, 46px)",
-              color: OFF_WHITE,
               lineHeight: 1.05,
               letterSpacing: "-0.04em",
               maxWidth: 400,
+              color: "#fff",
+              WebkitTextStroke: "1px rgba(0,0,0,0.06)",
+              paintOrder: "stroke fill",
             }}
           >
             <span style={{ fontWeight: 500 }}>Empaquetado y<br />distribución de<br /></span>
@@ -151,6 +99,32 @@ export default function Home() {
           </div>
         </div>
 
+        {/* SVG filter for inner shadow on Cereazúcar text */}
+        <svg style={{ position: "absolute", width: 0, height: 0 }}>
+          <defs>
+            <filter id="inner-shadow" x="-10%" y="-10%" width="120%" height="120%" colorInterpolationFilters="sRGB">
+              {/* Invert alpha: outside of text = opaque */}
+              <feComponentTransfer in="SourceAlpha" result="invertedAlpha">
+                <feFuncA type="table" tableValues="1 0"/>
+              </feComponentTransfer>
+              {/* Shift the outside region upward so it bleeds into bottom of letters */}
+              <feOffset dx="0" dy="-2" in="invertedAlpha" result="offset"/>
+              {/* Blur to smooth the bleed */}
+              <feGaussianBlur in="offset" stdDeviation="1" result="blurred"/>
+              {/* Clip blurred shadow to inside original text */}
+              <feComposite in="blurred" in2="SourceAlpha" operator="in" result="clipped"/>
+              {/* Color it dark */}
+              <feFlood floodColor="#000000" floodOpacity="0.08" result="color"/>
+              <feComposite in="color" in2="clipped" operator="in" result="innerShadow"/>
+              {/* Merge: original text + inner shadow on top */}
+              <feMerge>
+                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode in="innerShadow"/>
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
+
         {/* ── "Cereazúcar" watermark – bottom of hero, no shadow ──── */}
         <div
           className="absolute bottom-0 left-0 right-0 overflow-hidden"
@@ -160,10 +134,13 @@ export default function Home() {
             className="block font-medium"
             style={{
               fontSize: "clamp(72px, 13.5vw, 200px)",
-              color: OFF_WHITE,
-              letterSpacing: -4,
+              letterSpacing: "-0.06em",
               lineHeight: 0.9,
               paddingLeft: 32,
+              color: "#fff",
+              WebkitTextStroke: "1px rgba(0,0,0,0.06)",
+              paintOrder: "stroke fill",
+              filter: "url(#inner-shadow)",
             }}
           >
             Cereazúcar

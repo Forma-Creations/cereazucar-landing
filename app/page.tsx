@@ -39,7 +39,7 @@ export default function Home() {
 
         {/* ── Navbar ───────────────────────────────────────────────── */}
         <nav
-          className="absolute top-0 left-0 right-0 flex items-center justify-between"
+          className="fixed top-0 left-0 right-0 flex items-center justify-between"
           style={{ zIndex: 10, padding: "28px 40px" }}
         >
           {/* Logo */}
@@ -251,7 +251,7 @@ export default function Home() {
                 className="font-normal"
                 style={{ color: "rgba(255,255,255,0.8)", fontSize: 17, letterSpacing: -0.3, marginTop: -4 }}
               >
-                Distribución en Todo México
+                Distribución en Todo México.
               </p>
             </div>
           </div>
@@ -295,18 +295,17 @@ export default function Home() {
                 className="font-normal"
                 style={{ color: GREEN, fontSize: 17, letterSpacing: -0.3, marginTop: -4 }}
               >
-                Años de Experiencia en el Mercado
+                Años de Experiencia en el Mercado.
               </p>
             </div>
           </div>
 
           {/* Card 3 — Empaquetado (large, spans 2 rows, right) */}
           <div
-            className="relative rounded-3xl overflow-hidden flex flex-col justify-end"
+            className="relative rounded-3xl overflow-hidden"
             style={{
               gridColumn: "3",
               gridRow: "1 / 3",
-              padding: 32,
               minHeight: 620,
               border: `1.5px solid ${GREEN}`,
             }}
@@ -316,25 +315,27 @@ export default function Home() {
                 src="/images/stat-empaquetado.jpg"
                 alt="Empaquetado de calidad"
                 fill
-                className="object-cover object-center"
+                className="object-cover"
+                style={{ objectPosition: "center 60%" }}
               />
             </div>
-            <div className="relative">
+            {/* Text absolutely positioned, independently moveable */}
+            <div className="absolute" style={{ bottom: "17%", right: 110 }}>
               <p
                 className="font-medium"
                 style={{
                   fontSize: "clamp(24px, 2.8vw, 48px)",
                   color: OFF_WHITE,
                   letterSpacing: -1,
-                  lineHeight: 1.1,
-                  marginBottom: 8,
+                  lineHeight: 0.95,
+                  marginBottom: -2,
                 }}
               >
-                Empaquetado de Calidad
+                Empaquetado<br />de Calidad
               </p>
               <p
                 className="font-normal"
-                style={{ color: "rgba(245,245,247,0.7)", fontSize: 17, letterSpacing: -0.3 }}
+                style={{ color: OFF_WHITE, fontSize: 17, letterSpacing: -0.3 }}
               >
                 Listos para comercialización.
               </p>
@@ -371,7 +372,7 @@ export default function Home() {
                 className="font-normal"
                 style={{ color: GREEN, fontSize: 17, letterSpacing: -0.3, marginTop: -4 }}
               >
-                Colimense
+                Colimense.
               </p>
               <p
                 className="font-normal uppercase tracking-widest mt-1"

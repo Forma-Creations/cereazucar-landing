@@ -140,7 +140,6 @@ export default function Home() {
               color: "#fff",
               WebkitTextStroke: "1px rgba(0,0,0,0.06)",
               paintOrder: "stroke fill",
-              filter: "url(#inner-shadow)",
             }}
           >
             Cereazúcar

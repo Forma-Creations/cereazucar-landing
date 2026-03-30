@@ -69,7 +69,7 @@ export default function ProductosCarousel() {
             <Link
               key={product.slug}
               href={isBlurred ? "/productos" : `/productos/${product.slug}`}
-              scroll={false}
+              scroll={isBlurred ? true : false}
               draggable={false}
               style={{
                 flexShrink: 0,

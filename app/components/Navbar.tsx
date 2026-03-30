@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 function smoothScrollTo(target: HTMLElement, duration = 480) {
   const start = window.scrollY;
@@ -24,13 +25,15 @@ const GREEN = "#41a140";
 const DARK = "#1d1d1f";
 const NAV_LINKS = ["Inicio", "Nosotros", "Productos", "Proceso"];
 
-function NavLink({ item, scrolled }: { item: string; scrolled: boolean }) {
+function NavLink({ item, scrolled, isHome }: { item: string; scrolled: boolean; isHome: boolean }) {
   const [hovered, setHovered] = useState(false);
+  const href = isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`;
 
   return (
     <a
-      href={`#${item.toLowerCase()}`}
+      href={href}
       onClick={(e) => {
+        if (!isHome) return;
         e.preventDefault();
         const el = document.getElementById(item.toLowerCase());
         if (el) smoothScrollTo(el);
@@ -57,9 +60,11 @@ function NavLink({ item, scrolled }: { item: string; scrolled: boolean }) {
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ opaque = false }: { opaque?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [ctaHovered, setCtaHovered] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -68,24 +73,26 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const active = opaque || scrolled;
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 flex items-center justify-between"
       style={{
         zIndex: 50,
-        padding: scrolled ? "7px 40px" : "28px 40px",
-        background: scrolled ? "rgba(255,255,255,0.72)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "1px solid rgba(0,0,0,0)",
+        padding: active ? "7px 40px" : "28px 40px",
+        background: active ? "rgba(255,255,255,0.72)" : "transparent",
+        backdropFilter: active ? "blur(20px) saturate(180%)" : "none",
+        WebkitBackdropFilter: active ? "blur(20px) saturate(180%)" : "none",
+        borderBottom: active ? "1px solid rgba(0,0,0,0.08)" : "1px solid rgba(0,0,0,0)",
         transition: "padding 0.35s ease, background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease",
       }}
     >
       <Image
         src="/images/logo.png"
         alt="Cereazúcar"
-        width={scrolled ? 46 : 80}
-        height={scrolled ? 40 : 70}
+        width={active ? 46 : 80}
+        height={active ? 40 : 70}
         className="object-contain"
         style={{ transition: "width 0.35s ease, height 0.35s ease" }}
       />
@@ -95,7 +102,7 @@ export default function Navbar() {
         style={{ transform: "translateX(-50%)" }}
       >
         {NAV_LINKS.map((item) => (
-          <NavLink key={item} item={item} scrolled={scrolled} />
+          <NavLink key={item} item={item} scrolled={active} isHome={isHome} />
         ))}
       </div>
 
@@ -115,7 +122,7 @@ export default function Navbar() {
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
           color: "white",
           fontSize: 16,
-          padding: scrolled ? "5px 20px" : "10px 30px",
+          padding: active ? "5px 20px" : "10px 30px",
           lineHeight: 1,
           transform: ctaHovered ? "scale(1.06)" : "scale(1)",
           filter: ctaHovered ? "brightness(1.08)" : "brightness(1)",

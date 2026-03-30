@@ -14,20 +14,22 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Cereazúcar — Empaquetado y distribución de granos básicos",
-  description: "Empaquetado y distribución de granos básicos para México. 100% Colimense. 30+ años de experiencia en el mercado.",
+  description:
+    "Empaquetado y distribución de granos básicos para México. 100% Colimense. 30+ años de experiencia en el mercado.",
 };
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="es">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+        {modal}
       </body>
     </html>
   );

@@ -40,20 +40,20 @@ export async function POST(req: NextRequest) {
 
           <!-- Header -->
           <tr>
-            <td style="background:#1d1d1f;border-radius:20px 20px 0 0;padding:32px 40px;text-align:center">
-              <img src="${logoUrl}" alt="Cereazúcar" height="68" style="display:block;margin:0 auto;filter:brightness(0) invert(1) contrast(100%)" />
-              <p style="margin:16px 0 0;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.08em;text-transform:uppercase">Solicitud de Cotización</p>
+            <td style="background:#ffffff;border-radius:20px 20px 0 0;padding:32px 40px;text-align:center;border:1px solid #41a14040;border-bottom:none">
+              <img src="${logoUrl}" alt="Cereazúcar" height="68" style="display:block;margin:0 auto" />
+              <p style="margin:16px 0 0;color:#a2aaad;font-size:13px;letter-spacing:0.08em;text-transform:uppercase">Solicitud de Cotización</p>
             </td>
           </tr>
 
           <!-- Green accent bar -->
           <tr>
-            <td style="background:#41a140;height:4px;line-height:4px;font-size:4px">&nbsp;</td>
+            <td style="background:#41a140;height:4px;line-height:4px;font-size:4px;border-left:1px solid #41a14040;border-right:1px solid #41a14040">&nbsp;</td>
           </tr>
 
           <!-- Body -->
           <tr>
-            <td style="background:#ffffff;padding:40px 40px 32px">
+            <td style="background:#ffffff;padding:40px 40px 32px;border:1px solid #41a14040;border-top:none;border-bottom:none">
 
               <h2 style="margin:0 0 6px;font-size:22px;font-weight:600;color:#1d1d1f;letter-spacing:-0.4px">
                 Hola, tienes una nueva cotización
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
               <h3 style="margin:0 0 12px;font-size:13px;font-weight:500;color:#a2aaad;text-transform:uppercase;letter-spacing:0.08em">
                 Productos solicitados (${items.length})
               </h3>
-              <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #f0f0f0;border-radius:12px;overflow:hidden">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #41a14040;border-radius:12px;overflow:hidden">
                 <thead>
                   <tr style="background:#f5f5f7">
                     <th style="padding:10px 16px;text-align:left;font-size:12px;font-weight:500;color:#a2aaad;text-transform:uppercase;letter-spacing:0.06em">Producto</th>
@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
 
           <!-- Footer -->
           <tr>
-            <td style="background:#f5f5f7;border-radius:0 0 20px 20px;padding:24px 40px;text-align:center;border-top:1px solid #eee">
+            <td style="background:#f5f5f7;border-radius:0 0 20px 20px;padding:24px 40px;text-align:center;border:1px solid #41a14040;border-top:1px solid #41a14040">
               <p style="margin:0;font-size:12px;color:#a2aaad">
                 Cereazúcar — Empaquetado y distribución de granos básicos<br>
                 100% Colimense · 30+ años de experiencia

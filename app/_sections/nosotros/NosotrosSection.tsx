@@ -2,7 +2,7 @@ import { DARK } from "@/app/_constants/brand";
 
 export default function NosotrosSection() {
   return (
-    <section id="nosotros" style={{ background: "#fff", padding: "28px 40px 48px" }}>
+    <section id="nosotros" style={{ background: "#fff", padding: "28px 40px 48px", scrollMarginTop: 72 }}>
       <div style={{ maxWidth: 1648 }}>
         <div className="mb-6">
           <span

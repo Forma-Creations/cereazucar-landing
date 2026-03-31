@@ -3,7 +3,7 @@ import ProductosCarousel from "./ProductosCarousel";
 
 export default function ProductosSection() {
   return (
-    <section id="productos" style={{ background: OFF_WHITE, padding: "80px 0 100px" }}>
+    <section id="productos" style={{ background: OFF_WHITE, padding: "16px 0 100px" }}>
       {/* Header */}
       <div style={{ padding: "0 40px 48px" }}>
         <span

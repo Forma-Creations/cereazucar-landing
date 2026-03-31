@@ -1,0 +1,147 @@
+import { Resend } from "resend";
+import { NextRequest, NextResponse } from "next/server";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(req: NextRequest) {
+  const { nombre, email, mensaje, items } = await req.json();
+
+  const siteUrl = process.env.SITE_URL ?? "";
+  const logoUrl = `${siteUrl}/images/logo.png`;
+
+  const productRows = items
+    .map(
+      (i: { product: { name: string; category: string }; cantidad: string }) => `
+        <tr>
+          <td style="padding:12px 16px;border-bottom:1px solid #f0f0f0;font-size:14px;color:#1d1d1f">
+            ${i.product.name}
+          </td>
+          <td style="padding:12px 16px;border-bottom:1px solid #f0f0f0;font-size:14px;color:#a2aaad;text-transform:uppercase;letter-spacing:0.06em;font-size:11px">
+            ${i.product.category}
+          </td>
+          <td style="padding:12px 16px;border-bottom:1px solid #f0f0f0;font-size:14px;text-align:right">
+            <span style="background:#41a14018;color:#41a140;border:1px solid #41a14030;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:500">
+              ${i.cantidad || "Sin especificar"}
+            </span>
+          </td>
+        </tr>`
+    )
+    .join("");
+
+  const html = `
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;padding:40px 0">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:#1d1d1f;border-radius:20px 20px 0 0;padding:32px 40px;text-align:center">
+              <img src="${logoUrl}" alt="Cereazúcar" height="52" style="display:block;margin:0 auto;filter:brightness(0) invert(1)" />
+              <p style="margin:16px 0 0;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.08em;text-transform:uppercase">Solicitud de Cotización</p>
+            </td>
+          </tr>
+
+          <!-- Green accent bar -->
+          <tr>
+            <td style="background:#41a140;height:4px;line-height:4px;font-size:4px">&nbsp;</td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="background:#ffffff;padding:40px 40px 32px">
+
+              <h2 style="margin:0 0 6px;font-size:22px;font-weight:600;color:#1d1d1f;letter-spacing:-0.4px">
+                Hola, tienes una nueva cotización
+              </h2>
+              <p style="margin:0 0 32px;font-size:15px;color:#a2aaad">
+                ${nombre} está interesado en los siguientes productos.
+              </p>
+
+              <!-- Contact info -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;border-radius:12px;padding:0;margin-bottom:32px;overflow:hidden">
+                <tr>
+                  <td style="padding:16px 20px;border-bottom:1px solid #eee">
+                    <span style="font-size:11px;color:#a2aaad;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:4px">Nombre</span>
+                    <span style="font-size:15px;color:#1d1d1f;font-weight:500">${nombre}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 20px${mensaje ? ";border-bottom:1px solid #eee" : ""}">
+                    <span style="font-size:11px;color:#a2aaad;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:4px">Correo</span>
+                    <a href="mailto:${email}" style="font-size:15px;color:#41a140;font-weight:500;text-decoration:none">${email}</a>
+                  </td>
+                </tr>
+                ${mensaje ? `
+                <tr>
+                  <td style="padding:16px 20px">
+                    <span style="font-size:11px;color:#a2aaad;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:4px">Mensaje</span>
+                    <span style="font-size:15px;color:#1d1d1f;line-height:1.5">${mensaje}</span>
+                  </td>
+                </tr>` : ""}
+              </table>
+
+              <!-- Products -->
+              <h3 style="margin:0 0 12px;font-size:13px;font-weight:500;color:#a2aaad;text-transform:uppercase;letter-spacing:0.08em">
+                Productos solicitados (${items.length})
+              </h3>
+              <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #f0f0f0;border-radius:12px;overflow:hidden">
+                <thead>
+                  <tr style="background:#f5f5f7">
+                    <th style="padding:10px 16px;text-align:left;font-size:12px;font-weight:500;color:#a2aaad;text-transform:uppercase;letter-spacing:0.06em">Producto</th>
+                    <th style="padding:10px 16px;text-align:left;font-size:12px;font-weight:500;color:#a2aaad;text-transform:uppercase;letter-spacing:0.06em">Categoría</th>
+                    <th style="padding:10px 16px;text-align:right;font-size:12px;font-weight:500;color:#a2aaad;text-transform:uppercase;letter-spacing:0.06em">Presentación</th>
+                  </tr>
+                </thead>
+                <tbody>${productRows}</tbody>
+              </table>
+
+              <!-- CTA -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:32px">
+                <tr>
+                  <td align="center">
+                    <a href="mailto:${email}?subject=Re: Cotización Cereazúcar" style="display:inline-block;background:#41a140;color:white;font-size:15px;font-weight:500;text-decoration:none;padding:13px 32px;border-radius:99px">
+                      Responder a ${nombre}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#f5f5f7;border-radius:0 0 20px 20px;padding:24px 40px;text-align:center;border-top:1px solid #eee">
+              <p style="margin:0;font-size:12px;color:#a2aaad">
+                Cereazúcar — Empaquetado y distribución de granos básicos<br>
+                100% Colimense · 30+ años de experiencia
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+
+  const { error } = await resend.emails.send({
+    from: "Cereazúcar <onboarding@resend.dev>",
+    to: process.env.COTIZACION_TO_EMAIL!,
+    replyTo: email,
+    subject: `Cotización de ${nombre} — ${items.length} ${items.length === 1 ? "producto" : "productos"}`,
+    html,
+  });
+
+  if (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true });
+}

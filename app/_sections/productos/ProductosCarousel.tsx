@@ -5,11 +5,13 @@ import Image from "next/image";
 import { useRef } from "react";
 import { products } from "@/app/_data/products";
 import { GREEN, DARK, SUBTLE } from "@/app/_constants/brand";
+import { useCotizacion } from "@/app/_store/cotizacionStore";
 
 export default function ProductosCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const dragStart = useRef<{ x: number; scrollLeft: number } | null>(null);
   const isDragging = useRef(false);
+  const { add, items } = useCotizacion();
 
   const onPointerDown = (e: React.PointerEvent) => {
     const el = scrollRef.current;
@@ -84,8 +86,7 @@ export default function ProductosCarousel() {
                 className="rounded-3xl overflow-hidden"
                 style={{
                   background: "white",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                  boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+                  border: `1px solid ${GREEN}`,
                   filter: isBlurred ? "blur(4px)" : "none",
                   opacity: isBlurred ? 0.6 : 1,
                   transition: "filter 0.2s, opacity 0.2s",
@@ -103,9 +104,46 @@ export default function ProductosCarousel() {
                   />
                 </div>
                 <div style={{ padding: "18px 20px 22px" }}>
-                  <p style={{ fontSize: 11, color: SUBTLE, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4 }}>
-                    {product.category}
-                  </p>
+                  <div className="flex items-center justify-between" style={{ marginBottom: 4 }}>
+                    <p style={{ fontSize: 11, color: SUBTLE, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                      {product.category}
+                    </p>
+                    {!isBlurred && (() => {
+                      const inCart = items.some((i) => i.product.slug === product.slug);
+                      return (
+                        <button
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); add(product); }}
+                          title={inCart ? "En cotización" : "Agregar a cotización"}
+                          style={{
+                            width: 36,
+                            height: 36,
+                            borderRadius: "50%",
+                            background: inCart ? `${GREEN}18` : GREEN,
+                            color: inCart ? GREEN : "white",
+                            border: inCart ? `1.5px solid ${GREEN}` : "none",
+                            fontSize: 0,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            flexShrink: 0,
+                            lineHeight: 1,
+                          }}
+                        >
+                          {inCart ? (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          ) : (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="12" y1="5" x2="12" y2="19" />
+                              <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                          )}
+                        </button>
+                      );
+                    })()}
+                  </div>
                   <h3 className="font-medium" style={{ fontSize: 18, color: DARK, letterSpacing: -0.4, marginBottom: 10, lineHeight: 1.2 }}>
                     {product.name}
                   </h3>

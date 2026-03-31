@@ -12,7 +12,7 @@ export default function HeroSection() {
           src="/images/hero.png"
           alt="Cereazúcar"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "right center" }}
+          style={{ objectPosition: "center center" }}
         />
       </div>
 
@@ -21,12 +21,12 @@ export default function HeroSection() {
       {/* Hero content (lower-left) */}
       <div
         className="absolute"
-        style={{ zIndex: 5, left: 40, right: 40, bottom: "calc(clamp(72px, 13.5vw, 200px) * 0.9 + 32px)" }}
+        style={{ zIndex: 5, left: 24, right: 24, bottom: "calc(clamp(48px, 13.5vw, 200px) * 0.9 + 32px)" }}
       >
         <h1
           className="mb-6"
           style={{
-            fontSize: "clamp(26px, 2.8vw, 46px)",
+            fontSize: "clamp(20px, 2.8vw, 46px)",
             lineHeight: 1.05,
             letterSpacing: "-0.04em",
             maxWidth: 400,
@@ -102,10 +102,10 @@ export default function HeroSection() {
         <span
           className="block font-medium"
           style={{
-            fontSize: "clamp(72px, 13.5vw, 200px)",
+            fontSize: "clamp(48px, 13.5vw, 200px)",
             letterSpacing: "-0.06em",
             lineHeight: 0.9,
-            paddingLeft: 32,
+            paddingLeft: 24,
             color: "#fff",
             WebkitTextStroke: "1px rgba(0,0,0,0.06)",
             paintOrder: "stroke fill",

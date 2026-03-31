@@ -3,6 +3,8 @@ import HeroSection from "./_sections/hero/HeroSection";
 import NosotrosSection from "./_sections/nosotros/NosotrosSection";
 import EstadisticasSection from "./_sections/estadisticas/EstadisticasSection";
 import ProductosSection from "./_sections/productos/ProductosSection";
+import ProcesoSection from "./_sections/proceso/ProcesoSection";
+import ClientesSection from "./_sections/clientes/ClientesSection";
 import ContactoSection from "./_sections/contacto/ContactoSection";
 
 export default function Home() {
@@ -12,6 +14,8 @@ export default function Home() {
       <NosotrosSection />
       <EstadisticasSection />
       <ProductosSection />
+      <ProcesoSection />
+      <ClientesSection />
       <ContactoSection />
     </main>
   );

@@ -1,4 +1,4 @@
-import { DARK } from "@/app/_constants/brand";
+import { DARK, GREEN } from "@/app/_constants/brand";
 
 export default function NosotrosSection() {
   return (
@@ -16,8 +16,8 @@ export default function NosotrosSection() {
             }}
           >
             <span className="relative inline-flex" style={{ width: 7, height: 7, flexShrink: 0 }}>
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-25" style={{ background: DARK, animationDuration: "2s" }} />
-              <span className="relative inline-flex rounded-full" style={{ width: 7, height: 7, background: DARK }} />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-25" style={{ background: GREEN, animationDuration: "2s" }} />
+              <span className="relative inline-flex rounded-full" style={{ width: 7, height: 7, background: GREEN }} />
             </span>
             Nosotros
           </span>

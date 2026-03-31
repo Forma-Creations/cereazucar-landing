@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
               </p>
 
               <!-- Contact info -->
-              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;border-radius:12px;padding:0;margin-bottom:32px;overflow:hidden">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;border:1px solid #41a14040;border-radius:12px;padding:0;margin-bottom:32px;overflow:hidden">
                 <tr>
                   <td style="padding:16px 20px;border-bottom:1px solid #eee">
                     <span style="font-size:11px;color:#a2aaad;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:4px">Nombre</span>
@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
     from: "Cereazúcar <onboarding@resend.dev>",
     to: process.env.COTIZACION_TO_EMAIL!,
     replyTo: email,
-    subject: `Cotización de ${nombre} — ${items.length} ${items.length === 1 ? "producto" : "productos"}`,
+    subject: `Solicitud de cotización de ${nombre} — ${items.length} ${items.length === 1 ? "producto" : "productos"}`,
     html,
   });
 

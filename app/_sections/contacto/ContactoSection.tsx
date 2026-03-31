@@ -224,7 +224,7 @@ export default function ContactoSection() {
                   {item.icon}
                 </div>
                 <div>
-                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 2px" }}>
+                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 2px" }}>
                     {item.label}
                   </p>
                   <p style={{ fontSize: 15, color: "rgba(255,255,255,0.85)", margin: 0 }}>

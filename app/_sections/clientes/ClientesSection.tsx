@@ -45,7 +45,7 @@ function Badge({ number, title, tag }: { number: string; title: string; tag: str
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
         <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", color: SUBTLE }}>{number}</span>
-        <span style={{ fontSize: 10, color: GREEN, background: `${GREEN}14`, borderRadius: 99, padding: "2px 8px", fontWeight: 500 }}>{tag}</span>
+        <span style={{ fontSize: 10, color: DARK, background: `${GREEN}18`, borderRadius: 99, padding: "2px 8px", fontWeight: 500 }}>{tag}</span>
       </div>
       <p className="font-medium" style={{ fontSize: 13, color: DARK, letterSpacing: "-0.02em", lineHeight: 1.3, margin: 0 }}>{title}</p>
     </div>
@@ -109,7 +109,7 @@ export default function ClientesSection() {
         ].map((item) => (
           <div key={item.title} style={{ display: "flex", alignItems: "center", gap: 8, background: "#fff", border: `1px solid ${GREEN}30`, borderRadius: 99, padding: "8px 14px 8px 12px" }}>
             <span style={{ fontSize: 12, fontWeight: 500, color: DARK }}>{item.title}</span>
-            <span style={{ fontSize: 10, color: GREEN, background: `${GREEN}14`, borderRadius: 99, padding: "2px 8px", fontWeight: 500 }}>{item.tag}</span>
+            <span style={{ fontSize: 10, color: DARK, background: `${GREEN}18`, borderRadius: 99, padding: "2px 8px", fontWeight: 500 }}>{item.tag}</span>
           </div>
         ))}
       </div>

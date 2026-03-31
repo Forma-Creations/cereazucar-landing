@@ -128,7 +128,7 @@ function CategoryCarousel({ catProducts }: { catProducts: typeof products }) {
                   <h3 className="font-medium" style={{ fontSize: 17, color: DARK, letterSpacing: -0.4, marginBottom: 8, lineHeight: 1.2 }}>{product.name}</h3>
                   <div className="flex flex-wrap gap-1">
                     {product.presentations.map((p) => (
-                      <span key={p} style={{ fontSize: 12, color: GREEN, background: `${GREEN}18`, padding: "2px 9px", borderRadius: 99, border: `1px solid ${GREEN}30`, fontWeight: 500 }}>{p}</span>
+                      <span key={p} style={{ fontSize: 12, color: DARK, background: `${GREEN}18`, padding: "2px 9px", borderRadius: 99, border: `1px solid ${GREEN}30`, fontWeight: 500 }}>{p}</span>
                     ))}
                   </div>
                 </div>

@@ -198,6 +198,7 @@ export default function Navbar({ opaque = false }: { opaque?: boolean }) {
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={open}
+            aria-label="Ver cotización"
             className="relative flex items-center justify-center rounded-full"
             style={{
               background: active || menuOpen ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.48)",

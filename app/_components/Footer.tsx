@@ -39,7 +39,7 @@ export default function Footer() {
               className="object-contain"
               style={{ marginBottom: 16, filter: "brightness(0) invert(1)" }}
             />
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, maxWidth: 240 }}>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: 240 }}>
               Empaquetado y distribución de granos básicos para México. 100% Colimense.
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}
+                    style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", textDecoration: "none" }}
                   >
                     {link.label}
                   </a>
@@ -74,10 +74,10 @@ export default function Footer() {
               Contacto
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <a href="tel:+523123135100" style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>312 313 5100</a>
-              <a href="tel:+523123309270" style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>312 330 9270</a>
-              <a href="mailto:cereazucar@outlook.com" style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>cereazucar@outlook.com</a>
-              <p style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", margin: 0 }}>Lucío Blanco #163, El Moralete, Colima</p>
+              <a href="tel:+523123135100" style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>312 313 5100</a>
+              <a href="tel:+523123309270" style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>312 330 9270</a>
+              <a href="mailto:cereazucar@outlook.com" style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", textDecoration: "none" }}>cereazucar@outlook.com</a>
+              <p style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", margin: 0 }}>Lucío Blanco #163, El Moralete, Colima</p>
             </div>
           </div>
         </div>
@@ -95,10 +95,10 @@ export default function Footer() {
             gap: 8,
           }}
         >
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.25)" }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
             © {new Date().getFullYear()} Comercializadora Cereazúcar. Todos los derechos reservados.
           </p>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.25)" }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
             100% Colimense
           </p>
         </div>

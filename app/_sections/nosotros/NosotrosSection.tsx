@@ -1,4 +1,4 @@
-import { DARK, GREEN } from "@/app/_constants/brand";
+import { DARK, GREEN, SUBTLE } from "@/app/_constants/brand";
 
 export default function NosotrosSection() {
   return (
@@ -23,7 +23,7 @@ export default function NosotrosSection() {
           </span>
         </div>
 
-        <p
+        <h2
           style={{
             fontSize: "clamp(22px, 3.5vw, 52px)",
             lineHeight: 1.05,
@@ -32,13 +32,13 @@ export default function NosotrosSection() {
             margin: 0,
           }}
         >
-          <span style={{ fontWeight: 500, color: "#1D1D1F" }}>
+          <span style={{ fontWeight: 500, color: DARK }}>
             Nuestra empresa mantiene tu negocio productivo, bien abastecido y conectado desde el origen hasta tu mostrador.{" "}
           </span>
-          <span style={{ fontWeight: 400, color: "#A2AAAD" }}>
+          <span style={{ fontWeight: 400, color: SUBTLE }}>
             Cuando los comercios necesitan confiabilidad, los clientes esperan calidad y suministro constante, nosotros estamos ahí para hacerlo posible.
           </span>
-        </p>
+        </h2>
       </div>
     </section>
   );

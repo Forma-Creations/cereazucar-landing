@@ -70,6 +70,7 @@ export default function CotizacionDrawer() {
           </div>
           <button
             onClick={close}
+            aria-label="Cerrar cotización"
             style={{ background: "rgba(0,0,0,0.06)", border: "none", borderRadius: "50%", width: 32, height: 32, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, color: DARK }}
           >
             ✕
@@ -107,7 +108,7 @@ export default function CotizacionDrawer() {
                         {product.presentations.map((p) => <option key={p} value={p}>{p}</option>)}
                       </select>
                     </div>
-                    <button onClick={() => remove(product.slug)} style={{ background: "none", border: "none", color: SUBTLE, cursor: "pointer", fontSize: 16, padding: 4, flexShrink: 0 }}>✕</button>
+                    <button onClick={() => remove(product.slug)} aria-label={`Quitar ${product.name}`} style={{ background: "none", border: "none", color: SUBTLE, cursor: "pointer", fontSize: 16, padding: 4, flexShrink: 0 }}>✕</button>
                   </div>
                 ))}
               </div>

@@ -152,7 +152,7 @@ export default function ProductosCarousel() {
                   </h3>
                   <div className="flex flex-wrap gap-1">
                     {product.presentations.map((p) => (
-                      <span key={p} style={{ fontSize: 12, color: GREEN, background: `${GREEN}18`, padding: "3px 10px", borderRadius: 99, border: `1px solid ${GREEN}30`, fontWeight: 500 }}>
+                      <span key={p} style={{ fontSize: 12, color: DARK, background: `${GREEN}18`, padding: "3px 10px", borderRadius: 99, border: `1px solid ${GREEN}30`, fontWeight: 500 }}>
                         {p}
                       </span>
                     ))}

@@ -108,7 +108,7 @@ export default function ProcesoSection() {
                   fontSize: 13,
                   fontWeight: 500,
                   letterSpacing: "0.12em",
-                  color: active ? "rgba(255,255,255,0.6)" : SUBTLE,
+                  color: active ? "rgba(255,255,255,0.85)" : SUBTLE,
                   transition: "color 0.25s ease",
                 }}
               >
@@ -133,7 +133,7 @@ export default function ProcesoSection() {
                     fontSize: 15,
                     lineHeight: 1.65,
                     margin: 0,
-                    color: active ? "rgba(255,255,255,0.75)" : SUBTLE,
+                    color: active ? "rgba(255,255,255,0.9)" : SUBTLE,
                     transition: "color 0.25s ease",
                   }}
                 >

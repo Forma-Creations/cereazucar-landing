@@ -1,4 +1,4 @@
-import { GREEN } from "@/app/_constants/brand";
+import { GREEN, DARK } from "@/app/_constants/brand";
 
 export default function CtaSection() {
   return (
@@ -29,7 +29,7 @@ export default function CtaSection() {
           className="cta-btn"
           style={{
             background: "#fff",
-            color: GREEN,
+            color: DARK,
             fontWeight: 500,
             fontSize: 15,
             padding: "12px 28px",

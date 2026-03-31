@@ -14,6 +14,7 @@ export default function HeroSection() {
           className="w-full h-full object-cover"
           style={{ objectPosition: "center center" }}
         />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.15)" }} />
       </div>
 
       <Navbar />

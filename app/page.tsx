@@ -6,6 +6,7 @@ import ProductosSection from "./_sections/productos/ProductosSection";
 import ProcesoSection from "./_sections/proceso/ProcesoSection";
 import ClientesSection from "./_sections/clientes/ClientesSection";
 import ContactoSection from "./_sections/contacto/ContactoSection";
+import CtaSection from "./_sections/cta/CtaSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ProductosSection />
       <ProcesoSection />
       <ClientesSection />
+      <CtaSection />
       <ContactoSection />
     </main>
   );

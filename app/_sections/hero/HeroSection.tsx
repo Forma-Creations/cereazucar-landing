@@ -26,7 +26,7 @@ export default function HeroSection() {
         <h1
           className="mb-6"
           style={{
-            fontSize: "clamp(20px, 2.8vw, 46px)",
+            fontSize: "clamp(36px, 2.8vw, 46px)",
             lineHeight: 1.05,
             letterSpacing: "-0.04em",
             maxWidth: 400,

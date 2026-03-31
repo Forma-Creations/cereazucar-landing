@@ -17,12 +17,19 @@ const styles = `
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(to top, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.2) 40%, transparent 70%);
+      background: linear-gradient(to top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.08) 35%, transparent 60%);
       border-radius: inherit;
       pointer-events: none;
     }
     .bento-text {
       z-index: 2;
+    }
+    .bento-text p {
+      -webkit-text-stroke: 1px rgba(255,255,255,0.6);
+      paint-order: stroke fill;
+    }
+    .bento-text p.font-normal {
+      line-height: 1.15;
     }
     .bento-colimense {
       position: absolute !important;

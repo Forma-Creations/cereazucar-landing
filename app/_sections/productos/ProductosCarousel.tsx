@@ -44,6 +44,8 @@ export default function ProductosCarousel() {
   };
 
   return (
+    <>
+    <style>{`.product-card { transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1); } .product-card:hover { transform: scale(1.03); }`}</style>
     <div
       ref={scrollRef}
       onPointerDown={onPointerDown}
@@ -73,6 +75,7 @@ export default function ProductosCarousel() {
               href={isBlurred ? "/productos" : `/productos/${product.slug}`}
               scroll={isBlurred ? true : false}
               draggable={false}
+              className="product-card"
               style={{
                 flexShrink: 0,
                 width: 260,
@@ -191,5 +194,6 @@ export default function ProductosCarousel() {
         })}
       </div>
     </div>
+    </>
   );
 }

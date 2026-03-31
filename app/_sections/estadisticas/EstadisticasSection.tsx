@@ -2,7 +2,14 @@ import Image from "next/image";
 import { GREEN, SUBTLE } from "@/app/_constants/brand";
 
 const styles = `
+  .bento-card {
+    transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .bento-card:hover {
+    transform: scale(1.025);
+  }
   @media (max-width: 768px) {
+    .bento-card:hover { transform: none; }
     .bento-grid {
       display: flex !important;
       flex-direction: column !important;
@@ -27,6 +34,19 @@ const styles = `
     .bento-text p {
       -webkit-text-stroke: 1px rgba(255,255,255,0.6);
       paint-order: stroke fill;
+    }
+    .bento-text-no-stroke p {
+      -webkit-text-stroke: 0 !important;
+    }
+    .bento-no-overlay::after {
+      display: none !important;
+    }
+    .bento-dark-overlay::after {
+      background: linear-gradient(to top, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.3) 45%, transparent 72%) !important;
+    }
+    .bento-dark-overlay .bento-text p {
+      color: #1d1d1f !important;
+      -webkit-text-stroke: 0 !important;
     }
     .bento-text p.font-normal {
       line-height: 1.15;
@@ -55,7 +75,7 @@ export default function EstadisticasSection() {
       >
         {/* Card 1 — Nacional */}
         <div
-          className="bento-text-overlay relative rounded-3xl overflow-hidden"
+          className="bento-card bento-text-overlay bento-no-overlay relative rounded-3xl overflow-hidden"
           style={{
             background: GREEN,
             minHeight: 300,
@@ -75,7 +95,7 @@ export default function EstadisticasSection() {
               style={{ padding: "24px 20px 80px" }}
             />
           </div>
-          <div className="bento-text absolute" style={{ bottom: 20, left: 20 }}>
+          <div className="bento-text bento-text-no-stroke absolute" style={{ bottom: 20, left: 20 }}>
             <p className="font-medium" style={{ fontSize: "clamp(40px, 4vw, 64px)", color: "white", letterSpacing: -2, lineHeight: 1 }}>
               Nacional
             </p>
@@ -87,7 +107,7 @@ export default function EstadisticasSection() {
 
         {/* Card 2 — 30+ años */}
         <div
-          className="bento-text-overlay relative rounded-3xl overflow-hidden flex flex-col justify-between"
+          className="bento-card bento-text-overlay bento-dark-overlay relative rounded-3xl overflow-hidden flex flex-col justify-between"
           style={{
             background: "#fff",
             minHeight: 300,
@@ -122,7 +142,7 @@ export default function EstadisticasSection() {
 
         {/* Card 3 — Empaquetado de Calidad */}
         <div
-          className="bento-text-overlay relative rounded-3xl overflow-hidden"
+          className="bento-card bento-text-overlay bento-dark-overlay relative rounded-3xl overflow-hidden"
           style={{
             gridColumn: "3",
             gridRow: "1 / 3",
@@ -154,7 +174,7 @@ export default function EstadisticasSection() {
 
         {/* Card 4 — 100% Colimense */}
         <div
-          className="bento-text-overlay relative rounded-3xl overflow-hidden flex flex-col justify-start"
+          className="bento-card bento-text-overlay bento-dark-overlay relative rounded-3xl overflow-hidden flex flex-col justify-start"
           style={{
             gridColumn: "1 / 3",
             gridRow: "2",

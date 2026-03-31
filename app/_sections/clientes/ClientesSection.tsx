@@ -62,7 +62,7 @@ export default function ClientesSection() {
         }
       `}</style>
       {/* Badge */}
-      <div style={{ marginBottom: 24 }}>
+      <div style={{ marginBottom: 24, textAlign: "center" }}>
         <span
           className="inline-flex items-center gap-2 rounded-full font-normal"
           style={{

@@ -40,10 +40,11 @@ export default function HeroSection() {
           <span style={{ fontWeight: 300 }}>granos básicos<br />para México.</span>
         </h1>
 
+        <style>{`.hero-btn { transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1); } .hero-btn:hover { transform: scale(1.06); }`}</style>
         <div className="flex flex-wrap gap-2">
           <a
-            href="#productos"
-            className="flex items-center justify-center rounded-full font-normal"
+            href="/productos"
+            className="hero-btn flex items-center justify-center rounded-full font-normal"
             style={{
               background: "rgba(65,161,64,0.92)",
               backdropFilter: "blur(4px)",
@@ -58,7 +59,7 @@ export default function HeroSection() {
           </a>
           <a
             href="#contacto"
-            className="flex items-center justify-center rounded-full font-normal"
+            className="hero-btn flex items-center justify-center rounded-full font-normal"
             style={{
               background: "rgba(255,255,255,0.48)",
               backdropFilter: "blur(4px)",

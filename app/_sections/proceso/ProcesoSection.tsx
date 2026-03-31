@@ -98,7 +98,8 @@ export default function ProcesoSection() {
                 flexDirection: "column",
                 gap: 20,
                 border: `1.5px solid ${GREEN}`,
-                transition: "background 0.25s ease",
+                transition: "background 0.25s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1)",
+                transform: active ? "scale(1.03)" : "scale(1)",
                 cursor: "default",
               }}
             >

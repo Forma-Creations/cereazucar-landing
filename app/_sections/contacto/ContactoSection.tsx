@@ -54,6 +54,7 @@ export default function ContactoSection() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [btnHovered, setBtnHovered] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -116,22 +117,6 @@ export default function ContactoSection() {
       `}</style>
 
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        {/* Badge */}
-        <div style={{ marginBottom: 24 }}>
-          <span
-            className="inline-flex items-center gap-2 rounded-full font-normal"
-            style={{
-              border: "1px solid rgba(255,255,255,0.14)",
-              color: "rgba(255,255,255,0.7)",
-              fontSize: 14,
-              padding: "4px 14px 4px 10px",
-            }}
-          >
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: GREEN, flexShrink: 0, display: "inline-block" }} />
-            Contacto
-          </span>
-        </div>
-
         {/*
           Desktop: 2-col grid — left col has heading (row 1) + links (row 2), right col has form (spans both rows)
           Mobile (<580px): flex column — heading, form, links
@@ -199,6 +184,8 @@ export default function ContactoSection() {
                 <button
                   type="submit"
                   disabled={loading}
+                  onMouseEnter={() => setBtnHovered(true)}
+                  onMouseLeave={() => setBtnHovered(false)}
                   className="font-medium"
                   style={{
                     background: GREEN, color: "white", border: "none", borderRadius: 99,
@@ -206,6 +193,8 @@ export default function ContactoSection() {
                     cursor: loading ? "not-allowed" : "pointer",
                     opacity: loading ? 0.7 : 1,
                     alignSelf: "flex-start",
+                    transform: btnHovered && !loading ? "scale(1.05)" : "scale(1)",
+                    transition: "transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease",
                   }}
                 >
                   {loading ? "Enviando..." : "Enviar mensaje"}

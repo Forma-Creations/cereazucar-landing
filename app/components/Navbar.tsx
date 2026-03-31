@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCotizacion } from "@/app/_store/cotizacionStore";
@@ -64,6 +65,8 @@ export default function Navbar({ opaque = false }: { opaque?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ctaHovered, setCtaHovered] = useState(false);
+  const [logoHovered, setLogoHovered] = useState(false);
+  const [cotizacionHovered, setCotizacionHovered] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { items, open } = useCotizacion();
@@ -82,6 +85,17 @@ export default function Navbar({ opaque = false }: { opaque?: boolean }) {
 
   return (
     <>
+      <style>{`
+        @keyframes coti-pulse {
+          0%   { transform: scale(1); }
+          20%  { transform: scale(1.1); }
+          40%  { transform: scale(1); }
+          60%  { transform: scale(1.1); }
+          80%  { transform: scale(1); }
+          100% { transform: scale(1); }
+        }
+        .coti-btn-hover { animation: coti-pulse 0.55s ease-in-out; }
+      `}</style>
       <nav
         className="fixed top-0 left-0 right-0 flex items-center justify-between"
         style={{
@@ -94,14 +108,21 @@ export default function Navbar({ opaque = false }: { opaque?: boolean }) {
           transition: "padding 0.35s ease, background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease",
         }}
       >
-        <Image
-          src="/images/logo.png"
-          alt="Cereazúcar"
-          width={active ? 46 : 80}
-          height={active ? 40 : 70}
-          className="object-contain"
-          style={{ transition: "width 0.35s ease, height 0.35s ease" }}
-        />
+        <Link
+          href="/"
+          onMouseEnter={() => setLogoHovered(true)}
+          onMouseLeave={() => setLogoHovered(false)}
+          style={{ display: "flex", flexShrink: 0, transform: logoHovered ? "scale(1.08)" : "scale(1)", transition: "transform 0.22s cubic-bezier(0.34,1.56,0.64,1)", opacity: logoHovered ? 0.85 : 1 }}
+        >
+          <Image
+            src="/images/logo.png"
+            alt="Cereazúcar"
+            width={active ? 46 : 80}
+            height={active ? 40 : 70}
+            className="object-contain"
+            style={{ transition: "width 0.35s ease, height 0.35s ease" }}
+          />
+        </Link>
 
         {/* Desktop nav links */}
         <div className="hidden lg:flex flex-1 items-center justify-center gap-4">
@@ -114,7 +135,9 @@ export default function Navbar({ opaque = false }: { opaque?: boolean }) {
         <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={open}
-            className="relative flex items-center justify-center rounded-full font-normal"
+            onMouseEnter={() => setCotizacionHovered(true)}
+            onMouseLeave={() => setCotizacionHovered(false)}
+            className={`relative flex items-center justify-center rounded-full font-normal${cotizacionHovered ? " coti-btn-hover" : ""}`}
             style={{
               background: active ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.48)",
               backdropFilter: "blur(4px)",
@@ -237,87 +260,48 @@ export default function Navbar({ opaque = false }: { opaque?: boolean }) {
 
       {/* Mobile menu panel */}
       <div
-        className="fixed left-0 right-0 lg:hidden"
+        className="fixed inset-0 lg:hidden"
         style={{
-          top: 0,
           zIndex: 49,
-          background: "rgba(255,255,255,0.96)",
-          backdropFilter: "blur(20px) saturate(180%)",
-          WebkitBackdropFilter: "blur(20px) saturate(180%)",
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
-          paddingTop: 80,
-          paddingBottom: 24,
-          paddingLeft: 24,
-          paddingRight: 24,
-          transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
-          transition: "transform 0.35s cubic-bezier(0.32,0.72,0,1)",
+          background: GREEN,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "40px 32px",
+          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.38s cubic-bezier(0.32,0.72,0,1)",
           pointerEvents: menuOpen ? "auto" : "none",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {NAV_LINKS.map((item) => {
-            const href = isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`;
-            return (
-              <a
-                key={item}
-                href={href}
-                onClick={(e) => {
-                  setMenuOpen(false);
-                  if (!isHome) return;
-                  e.preventDefault();
-                  const el = document.getElementById(item.toLowerCase());
-                  if (el) smoothScrollTo(el);
-                }}
-                style={{
-                  fontSize: 18,
-                  color: DARK,
-                  textDecoration: "none",
-                  padding: "12px 16px",
-                  borderRadius: 14,
-                  background: "rgba(0,0,0,0.03)",
-                  border: "1px solid rgba(0,0,0,0.06)",
-                  fontWeight: 400,
-                }}
-              >
-                {item}
-              </a>
-            );
-          })}
-
-          <div style={{ height: 1, background: "rgba(0,0,0,0.07)", margin: "8px 0" }} />
-
-          <a
-            href="#contacto"
-            onClick={(e) => {
-              setMenuOpen(false);
-              e.preventDefault();
-              const el = document.getElementById("contacto");
-              if (el) smoothScrollTo(el);
-            }}
-            className="flex items-center justify-center rounded-full font-medium"
-            style={{
-              background: GREEN,
-              color: "white",
-              fontSize: 16,
-              padding: "13px",
-              textDecoration: "none",
-              textAlign: "center",
-              borderRadius: 14,
-            }}
-          >
-            Contacto
-          </a>
-        </div>
+        {[...NAV_LINKS, "Contacto"].map((item) => {
+          const href = isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`;
+          return (
+            <a
+              key={item}
+              href={href}
+              onClick={(e) => {
+                setMenuOpen(false);
+                if (!isHome) return;
+                e.preventDefault();
+                const el = document.getElementById(item.toLowerCase());
+                if (el) smoothScrollTo(el);
+              }}
+              style={{
+                fontSize: "clamp(36px, 8vw, 56px)",
+                color: "white",
+                textDecoration: "none",
+                fontWeight: 500,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.2,
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
+              {item}
+            </a>
+          );
+        })}
       </div>
-
-      {/* Mobile menu backdrop */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 lg:hidden"
-          style={{ zIndex: 48, background: "rgba(0,0,0,0.2)" }}
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
     </>
   );
 }

@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
           <!-- Header -->
           <tr>
             <td style="background:#1d1d1f;border-radius:20px 20px 0 0;padding:32px 40px;text-align:center">
-              <img src="${logoUrl}" alt="Cereazúcar" height="52" style="display:block;margin:0 auto;filter:brightness(0) invert(1)" />
+              <img src="${logoUrl}" alt="Cereazúcar" height="68" style="display:block;margin:0 auto;filter:brightness(0) invert(1) contrast(100%)" />
               <p style="margin:16px 0 0;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.08em;text-transform:uppercase">Solicitud de Cotización</p>
             </td>
           </tr>

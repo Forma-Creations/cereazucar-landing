@@ -32,7 +32,7 @@ export default function ProcesoSection() {
   return (
     <section
       id="proceso"
-      style={{ background: "#fff", padding: "80px 40px 100px", scrollMarginTop: 72 }}
+      style={{ background: "#fff", padding: "48px 40px 56px", scrollMarginTop: 72 }}
     >
       {/* Badge */}
       <div style={{ marginBottom: 24 }}>

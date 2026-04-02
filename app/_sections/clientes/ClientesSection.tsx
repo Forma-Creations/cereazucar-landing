@@ -54,7 +54,7 @@ function Badge({ number, title, tag }: { number: string; title: string; tag: str
 
 export default function ClientesSection() {
   return (
-    <section id="clientes" style={{ background: "#f5f5f7", padding: "80px 40px 0", scrollMarginTop: 72 }}>
+    <section id="clientes" style={{ background: "#f5f5f7", padding: "48px 40px 0", scrollMarginTop: 72 }}>
       <style>{`
         @media (max-width: 1100px) {
           .clientes-badges { display: none !important; }
